@@ -10,6 +10,7 @@ import { Section } from "@/components/section"
 import { FeatureGrid, Feature } from "@/components/feature-grid"
 import { CaseStudyCard, CaseStudy } from "@/components/case-study-card"
 import { CTASection } from "@/components/cta-section"
+import { Typewriter } from "@/components/typewriter"
 import { 
   Sparkles, 
   Globe, 
@@ -148,12 +149,38 @@ export default function HomePage() {
         {/* Hero Section */}
         <Section className="pt-8 pb-0">
           <div className="animate-fade-in">
-            <Hero
-              title="AI for Jewelry and SMBs. Launch in days, not months."
-              subtitle="Transform your business with enterprise-grade AI solutions designed specifically for jewelry retailers and small businesses. From intelligent catalog management to 24/7 customer engagement."
-              primaryCTA={{ text: "Book Demo", href: "/contact" }}
-              secondaryCTA={{ text: "See Pricing", href: "/pricing" }}
-            />
+            <div className="text-center space-y-6">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+                <Typewriter 
+                  texts={[
+                    "Launch in days, not months. (We're not kidding.)",
+                    "Deploy in hours, not weeks. Seriously.",
+                    "Scale fast, grow faster. No cap.",
+                    "Smart solutions, simple setup. It's that easy.",
+                    "Enterprise-grade, startup speed. Best of both worlds.",
+                    "Built for speed, designed for scale. Period.",
+                    "AI that actually works. No fluff, just results.",
+                    "From idea to launch in days. We dare you to find faster.",
+                    "Enterprise power, startup agility. You're welcome."
+                  ]}
+                  className="text-foreground"
+                  typingSpeed={50}
+                  deletingSpeed={25}
+                  pauseDuration={2000}
+                />
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+                Stop drowning in spreadsheets and manual processes. Automate everything, boost sales, and scale like a boss. Enterprise power without the enterprise BS.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg" className="transition-all duration-300 hover:scale-105">
+                  <Link href="/contact">Book Demo</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="transition-all duration-300 hover:scale-105">
+                  <Link href="/pricing">See Pricing</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </Section>
 

@@ -20,6 +20,10 @@ const navigation = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  
+  const handleClose = () => {
+    setIsOpen(false)
+  }
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300">
@@ -81,8 +85,8 @@ export function Navbar() {
                         <Link
                           key={item.name}
                           href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className="sidebar-nav-item"
+                          onClick={handleClose}
+                          className="sidebar-nav-item transition-all duration-300 hover:scale-105"
                         >
                           {item.name}
                         </Link>
@@ -92,8 +96,8 @@ export function Navbar() {
                   
                   {/* Footer with CTA */}
                   <div className="sidebar-footer">
-                    <Button asChild className="w-full h-12 text-base font-medium">
-                      <Link href="/contact" onClick={() => setIsOpen(false)}>Book Demo</Link>
+                    <Button asChild className="w-full h-12 text-base font-medium transition-all duration-300 hover:scale-105">
+                      <Link href="/contact" onClick={handleClose}>Book Demo</Link>
                     </Button>
                   </div>
                 </div>
