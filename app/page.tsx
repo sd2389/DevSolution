@@ -1,103 +1,294 @@
-import Image from "next/image";
+import { Metadata } from "next"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
+import { Hero } from "@/components/hero"
+import { Section } from "@/components/section"
+import { FeatureGrid, Feature } from "@/components/feature-grid"
+import { CaseStudyCard, CaseStudy } from "@/components/case-study-card"
+import { CTASection } from "@/components/cta-section"
+import { 
+  Sparkles, 
+  Globe, 
+  Zap, 
+  Clock, 
+  TrendingUp, 
+  ArrowRight,
+  CheckCircle
+} from "lucide-react"
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "AI for Jewelry and SMBs - DevSolutions",
+  description: "Launch AI-powered solutions in days, not months. Specializing in jewelry industry with JewelVision and comprehensive business solutions.",
+}
+
+const jsonLdOrganization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "DevSolutions",
+  "url": "https://devsolutions.com",
+  "logo": "https://devsolutions.com/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-555-123-4567",
+    "contactType": "sales",
+    "email": "hello@devsolutions.com",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://twitter.com/devsolutions",
+    "https://linkedin.com/company/devsolutions"
+  ]
+}
+
+const jsonLdProduct = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "JewelVision",
+  "description": "AI-powered jewelry catalog management system",
+  "brand": {
+    "@type": "Brand",
+    "name": "DevSolutions"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "199",
+    "highPrice": "599",
+    "offerCount": "3"
+  }
+}
+
+const jsonLdService = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Website + AI Agent Bundle",
+  "provider": {
+    "@type": "Organization",
+    "name": "DevSolutions"
+  },
+  "description": "Complete digital transformation package with website and AI assistant",
+  "offers": {
+    "@type": "Offer",
+    "price": "4999",
+    "priceCurrency": "USD"
+  }
+}
+
+const outcomes: Feature[] = [
+  {
+    title: "More Leads",
+    description: "Convert 3x more visitors with AI-powered engagement and optimized user experiences",
+    icon: TrendingUp,
+  },
+  {
+    title: "Less Operations Time",
+    description: "Automate 70% of repetitive tasks with intelligent workflows and AI assistants",
+    icon: Clock,
+  },
+  {
+    title: "Catalog Accuracy",
+    description: "99.9% accuracy in product matching and inventory management with JewelVision",
+    icon: CheckCircle,
+  },
+  {
+    title: "24/7 Responses",
+    description: "Never miss a customer inquiry with AI agents handling chat and voice interactions",
+    icon: Zap,
+  },
+]
+
+const caseStudies: CaseStudy[] = [
+  {
+    title: "Diamond Retailer Digital Transformation",
+    client: "Premium Jewels Inc.",
+    problem: "Manual inventory management and customer inquiries overwhelming staff",
+    result: "80% reduction in response time, 150% increase in online sales",
+    metrics: ["80% faster", "150% growth", "24/7 support"],
+    stack: ["Next.js", "JewelVision", "AI Agent"],
+  },
+  {
+    title: "B2B Jewelry Platform Launch",
+    client: "GemTrade Network",
+    problem: "No digital presence for wholesale jewelry trading",
+    result: "Connected 500+ dealers in 3 months with automated matching",
+    metrics: ["500+ users", "3 months", "$2M GMV"],
+    stack: ["React", "FastAPI", "PostgreSQL"],
+  },
+  {
+    title: "Custom Design Studio Portal",
+    client: "Artisan Jewelry Co.",
+    problem: "Complex custom order process losing potential customers",
+    result: "Streamlined design-to-order workflow increased conversions by 200%",
+    metrics: ["200% conversion", "5 days faster", "Zero errors"],
+    stack: ["Next.js", "3D Viewer", "AI Design"],
+  },
+]
+
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProduct) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }}
+      />
+      <Navbar />
+      <main>
+        {/* Hero Section */}
+        <Section className="pt-8 pb-0">
+          <Hero
+            title="AI for Jewelry and SMBs. Launch in days, not months."
+            subtitle="Transform your business with enterprise-grade AI solutions designed specifically for jewelry retailers and small businesses. From intelligent catalog management to 24/7 customer engagement."
+            primaryCTA={{ text: "Book Demo", href: "/contact" }}
+            secondaryCTA={{ text: "See Pricing", href: "/pricing" }}
+          />
+        </Section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        {/* Feature Cards */}
+        <Section>
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* JewelVision Card */}
+            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl" />
+              <CardHeader>
+                <div className="flex items-center space-x-2 mb-2">
+                  <Sparkles className="h-6 w-6 text-gold" />
+                  <Badge variant="default" className="bg-gold text-gold-foreground">Flagship</Badge>
+                </div>
+                <CardTitle className="text-2xl">JewelVision</CardTitle>
+                <CardDescription className="text-base">
+                  Identify designs, dedupe catalogs, auto-generate variants with our proprietary AI vision system
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-gold" />
+                    99.9% accuracy in design matching
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-gold" />
+                    Process 10,000+ SKUs in minutes
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-gold" />
+                    Auto-generate product variants
+                  </li>
+                </ul>
+                <Button asChild className="w-full">
+                  <Link href="/jewelvision">
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Bundle Card */}
+            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+              <CardHeader>
+                <div className="flex items-center space-x-2 mb-2">
+                  <Globe className="h-6 w-6 text-primary" />
+                  <Badge>Best Value</Badge>
+                </div>
+                <CardTitle className="text-2xl">Website + AI Agent Bundle</CardTitle>
+                <CardDescription className="text-base">
+                  High-converting site + industry-tuned AI agent for complete digital transformation
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-primary" />
+                    Custom Next.js website with CMS
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-primary" />
+                    AI voice & chat agent included
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-primary" />
+                    Launch in 2-3 weeks guaranteed
+                  </li>
+                </ul>
+                <Button asChild className="w-full">
+                  <Link href="/bundle">
+                    View Bundle
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </Section>
+
+        {/* Outcomes Section */}
+        <Section className="bg-muted/30">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Measurable Business Outcomes</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our solutions deliver immediate ROI with proven results across the jewelry industry
+            </p>
+          </div>
+          <FeatureGrid features={outcomes} columns={4} />
+        </Section>
+
+        {/* Case Studies */}
+        <Section>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Success Stories</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              See how we've transformed jewelry businesses with AI-powered solutions
+            </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {caseStudies.map((study, index) => (
+              <CaseStudyCard key={index} study={study} />
+            ))}
+          </div>
+        </Section>
+
+        {/* Statistics */}
+        <Section className="bg-primary/5 rounded-2xl">
+          <div className="grid gap-8 md:grid-cols-3 text-center">
+            <div>
+              <div className="text-4xl font-bold text-primary">500+</div>
+              <div className="text-sm text-muted-foreground mt-2">Projects Delivered</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary">99.9%</div>
+              <div className="text-sm text-muted-foreground mt-2">Uptime Guaranteed</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary">24/7</div>
+              <div className="text-sm text-muted-foreground mt-2">Support Available</div>
+            </div>
+          </div>
+        </Section>
+
+        {/* Final CTA */}
+        <Section>
+          <CTASection
+            title="Ready to Transform Your Business?"
+            description="Join 500+ jewelry businesses already using our AI-powered solutions to grow faster and serve customers better."
+            primaryCTA={{ text: "Start Free Trial", href: "/contact" }}
+            secondaryCTA={{ text: "Book a Demo", href: "/contact#demo" }}
+          />
+        </Section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      <Footer />
+    </>
+  )
 }
