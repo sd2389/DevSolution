@@ -124,8 +124,367 @@
   }
   html {
     color-scheme: light;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  /* Smooth animations for common elements */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out forwards;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 0.3s ease-in forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      opacity: 0; 
+      transform: translateX(-30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+  
+  @keyframes slideInRight {
+    from { 
+      opacity: 0; 
+      transform: translateX(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+  
+  @keyframes scaleIn {
+    from { 
+      opacity: 0; 
+      transform: scale(0.9); 
+    }
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+}
+
+@layer components {
+  /* Mobile Sidebar Improvements */
+  .mobile-sidebar {
+    @apply bg-background border-l border-border/20 shadow-2xl;
+  }
+  
+  /* Mobile sidebar overlay improvements */
+  .mobile-sidebar + [data-radix-dialog-overlay] {
+    @apply bg-black/50 backdrop-blur-sm;
+  }
+  
+  .mobile-sidebar .sidebar-header {
+    @apply flex items-center justify-end p-4 border-b border-border/20;
+    opacity: 0;
+    animation: fadeInUp 0.3s ease-out 0.2s forwards;
+  }
+  
+  .mobile-sidebar .sidebar-nav {
+    @apply flex-1 px-6 py-6 overflow-y-auto;
+    opacity: 0;
+    animation: fadeInUp 0.3s ease-out 0.3s forwards;
+  }
+  
+  .mobile-sidebar .sidebar-footer {
+    @apply p-6 border-t border-border/20;
+    opacity: 0;
+    animation: fadeInUp 0.3s ease-out 0.4s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .mobile-sidebar .sidebar-nav-item {
+    @apply px-3 py-3 text-base font-medium text-foreground transition-all duration-200 hover:text-primary hover:bg-muted/50 rounded-lg min-h-[44px] flex items-center;
+  }
+  
+  .mobile-sidebar .sidebar-footer {
+    @apply p-6 border-t border-border/20;
+  }
+  
+  .mobile-sidebar .sidebar-close {
+    @apply absolute top-6 right-6 rounded-md p-2 opacity-70 transition-all hover:opacity-100 hover:bg-muted/50;
+    transform: scale(0.8);
+    animation: scaleIn 0.2s ease-out 0.1s forwards;
+  }
+  
+  @keyframes scaleIn {
+    to {
+      transform: scale(1);
+    }
+  }
+  
+  /* Mobile sidebar animations */
+  @media (max-width: 640px) {
+    .mobile-sidebar {
+      width: 280px !important;
+      max-width: 85vw;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .mobile-sidebar[data-state="open"] {
+      transform: translateX(0);
+    }
+    
+    .mobile-sidebar[data-state="closed"] {
+      transform: translateX(100%);
+    }
+    
+    .mobile-sidebar .sidebar-nav-item {
+      @apply active:scale-95 active:bg-primary/10;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .mobile-sidebar .sidebar-nav-item:hover {
+      transform: translateX(4px);
+    }
+    
+    /* Staggered animation for menu items */
+    .mobile-sidebar .sidebar-nav-item {
+      opacity: 0;
+      transform: translateX(20px);
+      animation: slideInFromRight 0.3s ease-out forwards;
+    }
+    
+    .mobile-sidebar .sidebar-nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .mobile-sidebar .sidebar-nav-item:nth-child(2) { animation-delay: 0.15s; }
+    .mobile-sidebar .sidebar-nav-item:nth-child(3) { animation-delay: 0.2s; }
+    .mobile-sidebar .sidebar-nav-item:nth-child(4) { animation-delay: 0.25s; }
+    .mobile-sidebar .sidebar-nav-item:nth-child(5) { animation-delay: 0.3s; }
+    .mobile-sidebar .sidebar-nav-item:nth-child(6) { animation-delay: 0.35s; }
+    .mobile-sidebar .sidebar-nav-item:nth-child(7) { animation-delay: 0.4s; }
+    .mobile-sidebar .sidebar-nav-item:nth-child(8) { animation-delay: 0.45s; }
+    
+    @keyframes slideInFromRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+  
+  @media (min-width: 641px) {
+    .mobile-sidebar {
+      width: 320px !important;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .mobile-sidebar[data-state="open"] {
+      transform: translateX(0);
+    }
+    
+    .mobile-sidebar[data-state="closed"] {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Very small screens */
+  @media (max-width: 360px) {
+    .mobile-sidebar {
+      width: 260px !important;
+      max-width: 90vw;
+    }
+    
+    .mobile-sidebar .sidebar-header {
+      @apply p-3;
+    }
+    
+    .mobile-sidebar .sidebar-nav {
+      @apply px-4 py-4;
+    }
+    
+    .mobile-sidebar .sidebar-footer {
+      @apply p-4;
+    }
+    
+    .mobile-sidebar .sidebar-nav-item {
+      @apply px-2 py-2 text-sm;
+    }
+  }
+  
+  /* Mobile solutions page improvements */
+  @media (max-width: 640px) {
+    .solutions-card {
+      @apply mx-2;
+    }
+    
+    .solutions-content {
+      @apply px-4;
+    }
+    
+    .solutions-button {
+      @apply w-full justify-center;
+    }
+    
+    .solutions-pricing {
+      @apply text-center;
+    }
+  }
+  
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Enhanced button animations */
+  .btn-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .btn-smooth:hover {
+    @apply transform scale-105 shadow-lg;
+  }
+  
+  .btn-smooth:active {
+    @apply transform scale-95;
+  }
+  
+  /* Enhanced card animations */
+  .card-smooth {
+    @apply transition-all duration-500 ease-in-out;
+  }
+  
+  .card-smooth:hover {
+    @apply transform scale-105 shadow-xl;
+  }
+  
+  /* Text animation utilities */
+  .text-animate {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .text-animate:hover {
+    @apply transform -translate-y-0.5;
+  }
+  
+  /* Icon animation utilities */
+  .icon-animate {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .icon-animate:hover {
+    @apply transform rotate-12 scale-110;
+  }
+  
+  /* Case study card improvements */
+  .case-study-card {
+    @apply flex flex-col h-full;
+  }
+  
+  .case-study-card .card-header {
+    @apply flex-shrink-0;
+  }
+  
+  .case-study-card .card-content {
+    @apply flex-grow;
+  }
+  
+  .case-study-card .card-footer {
+    @apply flex-shrink-0 mt-auto;
+  }
+  
+  /* Tab animations */
+  .tabs-smooth {
+    @apply transition-all duration-500 ease-in-out;
+  }
+  
+  .tabs-content-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .tabs-trigger-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .tabs-trigger-smooth:hover {
+    @apply transform scale-105;
+  }
+  
+  .tabs-trigger-smooth[data-state="active"] {
+    @apply transform scale-105;
   }
 }

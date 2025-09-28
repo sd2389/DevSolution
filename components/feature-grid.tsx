@@ -23,16 +23,16 @@ export function FeatureGrid({ features, columns = 3, className }: FeatureGridPro
   return (
     <div className={cn(`grid gap-8 ${gridCols[columns]}`, className)}>
       {features.map((feature, index) => (
-        <div key={index} className="relative">
+        <div key={index} className="relative group transition-all duration-300 hover:scale-105 hover:shadow-lg">
           {feature.icon && (
             <div className="mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <feature.icon className="h-6 w-6 text-primary" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
+                <feature.icon className="h-6 w-6 text-primary transition-all duration-300 group-hover:rotate-12" />
               </div>
             </div>
           )}
-          <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-          <p className="text-muted-foreground">{feature.description}</p>
+          <h3 className="text-lg font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">{feature.title}</h3>
+          <p className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground">{feature.description}</p>
         </div>
       ))}
     </div>

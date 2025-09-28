@@ -147,19 +147,21 @@ export default function HomePage() {
       <main>
         {/* Hero Section */}
         <Section className="pt-8 pb-0">
-          <Hero
-            title="AI for Jewelry and SMBs. Launch in days, not months."
-            subtitle="Transform your business with enterprise-grade AI solutions designed specifically for jewelry retailers and small businesses. From intelligent catalog management to 24/7 customer engagement."
-            primaryCTA={{ text: "Book Demo", href: "/contact" }}
-            secondaryCTA={{ text: "See Pricing", href: "/pricing" }}
-          />
+          <div className="animate-fade-in">
+            <Hero
+              title="AI for Jewelry and SMBs. Launch in days, not months."
+              subtitle="Transform your business with enterprise-grade AI solutions designed specifically for jewelry retailers and small businesses. From intelligent catalog management to 24/7 customer engagement."
+              primaryCTA={{ text: "Book Demo", href: "/contact" }}
+              secondaryCTA={{ text: "See Pricing", href: "/pricing" }}
+            />
+          </div>
         </Section>
 
         {/* Feature Cards */}
         <Section>
           <div className="grid gap-8 md:grid-cols-2">
             {/* JewelVision Card */}
-            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full">
+            <Card className="relative overflow-hidden hover:shadow-xl transition-all duration-500 flex flex-col h-full group animate-slide-in-left">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl" />
               <CardHeader>
                 <div className="flex items-center space-x-2 mb-2">
@@ -196,7 +198,7 @@ export default function HomePage() {
             </Card>
 
             {/* Bundle Card */}
-            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full">
+            <Card className="relative overflow-hidden hover:shadow-xl transition-all duration-500 flex flex-col h-full group animate-slide-in-right">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
               <CardHeader>
                 <div className="flex items-center space-x-2 mb-2">
@@ -236,26 +238,30 @@ export default function HomePage() {
 
         {/* Outcomes Section */}
         <Section className="bg-muted/30">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-slide-up">
             <h2 className="text-3xl font-bold mb-4">Measurable Business Outcomes</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Our solutions deliver immediate ROI with proven results across the jewelry industry
             </p>
           </div>
-          <FeatureGrid features={outcomes} columns={4} />
+          <div className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <FeatureGrid features={outcomes} columns={4} />
+          </div>
         </Section>
 
         {/* Case Studies */}
         <Section>
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-slide-up">
             <h2 className="text-3xl font-bold mb-4">Success Stories</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               See how we've transformed jewelry businesses with AI-powered solutions
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
             {caseStudies.map((study, index) => (
-              <CaseStudyCard key={index} study={study} />
+              <div key={index} className="animate-scale-in flex" style={{ animationDelay: `${index * 0.2}s` }}>
+                <CaseStudyCard study={study} />
+              </div>
             ))}
           </div>
         </Section>
@@ -263,15 +269,15 @@ export default function HomePage() {
         {/* Statistics */}
         <Section className="bg-primary/5 rounded-2xl">
           <div className="grid gap-8 md:grid-cols-3 text-center">
-            <div>
+            <div className="animate-bounce-in" style={{ animationDelay: '0.1s' }}>
               <div className="text-4xl font-bold text-primary">500+</div>
               <div className="text-sm text-muted-foreground mt-2">Projects Delivered</div>
             </div>
-            <div>
+            <div className="animate-bounce-in" style={{ animationDelay: '0.2s' }}>
               <div className="text-4xl font-bold text-primary">99.9%</div>
               <div className="text-sm text-muted-foreground mt-2">Uptime Guaranteed</div>
             </div>
-            <div>
+            <div className="animate-bounce-in" style={{ animationDelay: '0.3s' }}>
               <div className="text-4xl font-bold text-primary">24/7</div>
               <div className="text-sm text-muted-foreground mt-2">Support Available</div>
             </div>
@@ -280,12 +286,14 @@ export default function HomePage() {
 
         {/* Final CTA */}
         <Section>
-          <CTASection
-            title="Ready to Transform Your Business?"
-            description="Join 500+ jewelry businesses already using our AI-powered solutions to grow faster and serve customers better."
-            primaryCTA={{ text: "Start Free Trial", href: "/contact" }}
-            secondaryCTA={{ text: "Book a Demo", href: "/contact#demo" }}
-          />
+          <div className="animate-fade-in">
+            <CTASection
+              title="Ready to Transform Your Business?"
+              description="Join 500+ jewelry businesses already using our AI-powered solutions to grow faster and serve customers better."
+              primaryCTA={{ text: "Start Free Trial", href: "/contact" }}
+              secondaryCTA={{ text: "Book a Demo", href: "/contact#demo" }}
+            />
+          </div>
         </Section>
       </main>
       <Footer />

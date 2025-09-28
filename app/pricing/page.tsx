@@ -206,48 +206,56 @@ export default function PricingPage() {
 
         {/* Service Pricing Tabs */}
         <Section>
-          <Tabs defaultValue="website" className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-4">
-              <TabsTrigger value="website">Website</TabsTrigger>
-              <TabsTrigger value="software">Software</TabsTrigger>
-              <TabsTrigger value="ai">AI</TabsTrigger>
-              <TabsTrigger value="jewelvision">JewelVision</TabsTrigger>
-            </TabsList>
+          <div className="animate-fade-in">
+            <Tabs defaultValue="website" className="w-full">
+              <TabsList className="grid w-full max-w-md mx-auto grid-cols-4 animate-slide-up">
+                <TabsTrigger value="website" className="transition-all duration-300 hover:scale-105">Website</TabsTrigger>
+                <TabsTrigger value="software" className="transition-all duration-300 hover:scale-105">Software</TabsTrigger>
+                <TabsTrigger value="ai" className="transition-all duration-300 hover:scale-105">AI</TabsTrigger>
+                <TabsTrigger value="jewelvision" className="transition-all duration-300 hover:scale-105">JewelVision</TabsTrigger>
+              </TabsList>
             
-            <TabsContent value="website" className="mt-8">
-              <div className="text-center mb-8">
+            <TabsContent value="website" className="mt-8 animate-fade-in">
+              <div className="text-center mb-8 animate-slide-up">
                 <h2 className="text-2xl font-bold mb-2">Website Development</h2>
                 <p className="text-muted-foreground">Modern, fast, conversion-optimized websites</p>
               </div>
-              <PricingTable tiers={websitePricing} />
+              <div className="animate-scale-in">
+                <PricingTable tiers={websitePricing} />
+              </div>
             </TabsContent>
             
-            <TabsContent value="software" className="mt-8">
-              <div className="text-center mb-8">
+            <TabsContent value="software" className="mt-8 animate-fade-in">
+              <div className="text-center mb-8 animate-slide-up">
                 <h2 className="text-2xl font-bold mb-2">Software Development</h2>
                 <p className="text-muted-foreground">Custom applications tailored to your business</p>
               </div>
-              <PricingTable tiers={softwarePricing} />
+              <div className="animate-scale-in">
+                <PricingTable tiers={softwarePricing} />
+              </div>
             </TabsContent>
             
-            <TabsContent value="ai" className="mt-8">
-              <div className="text-center mb-8">
+            <TabsContent value="ai" className="mt-8 animate-fade-in">
+              <div className="text-center mb-8 animate-slide-up">
                 <h2 className="text-2xl font-bold mb-2">AI Development</h2>
                 <p className="text-muted-foreground">Intelligent automation and AI assistants</p>
               </div>
-              <PricingTable tiers={aiPricing} />
+              <div className="animate-scale-in">
+                <PricingTable tiers={aiPricing} />
+              </div>
             </TabsContent>
             
-            <TabsContent value="jewelvision" className="mt-8">
-              <div className="text-center mb-8">
+            <TabsContent value="jewelvision" className="mt-8 animate-fade-in">
+              <div className="text-center mb-8 animate-slide-up">
                 <h2 className="text-2xl font-bold mb-2">JewelVision</h2>
                 <p className="text-muted-foreground">AI-powered jewelry catalog management</p>
-                <Button asChild className="mt-4">
+                <Button asChild className="mt-4 transition-all duration-300 hover:scale-105">
                   <Link href="/jewelvision#pricing">View JewelVision Pricing</Link>
                 </Button>
               </div>
             </TabsContent>
-          </Tabs>
+            </Tabs>
+          </div>
         </Section>
 
         {/* Bundle Promotion */}
