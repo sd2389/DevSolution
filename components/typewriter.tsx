@@ -63,7 +63,12 @@ export function Typewriter({
 
   return (
     <span className={cn("inline-block", className)}>
-      {currentText}
+      {currentText.split('\n').map((line, index) => (
+        <span key={index}>
+          {line}
+          {index < currentText.split('\n').length - 1 && <br />}
+        </span>
+      ))}
       <span className="typewriter-cursor"></span>
     </span>
   )

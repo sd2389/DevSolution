@@ -153,15 +153,15 @@ export default function HomePage() {
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 <Typewriter 
                   texts={[
-                    "Launch in days, not months. (We're not kidding.)",
-                    "Deploy in hours, not weeks. Seriously.",
-                    "Scale fast, grow faster. No cap.",
-                    "Smart solutions, simple setup. It's that easy.",
-                    "Enterprise-grade, startup speed. Best of both worlds.",
-                    "Built for speed, designed for scale. Period.",
-                    "AI that actually works. No fluff, just results.",
-                    "From idea to launch in days. We dare you to find faster.",
-                    "Enterprise power, startup agility. You're welcome."
+                    "Launch in days, not months.\n (We're not kidding.)",
+                    "Deploy in hours, not weeks.\n Seriously.",
+                    "Scale fast, grow faster.\n No cap.",
+                    "Smart solutions, simple setup. \n It's that easy.",
+                    "Enterprise-grade, startup speed.\n Best of both worlds.",
+                    "Built for speed, designed for scale.\n Period.",
+                    "AI that actually works.\n No fluff, just results.",
+                    "From idea to launch in days.\n We dare you to find faster.",
+                    "Enterprise power, startup agility.\n You're welcome."
                   ]}
                   className="text-foreground"
                   typingSpeed={50}
