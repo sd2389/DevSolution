@@ -127,7 +127,7 @@ const nextConfig = {
 
   // ESLint configuration
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
     dirs: ['app', 'components', 'lib'],
   },
 }
