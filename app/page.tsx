@@ -159,7 +159,7 @@ export default function HomePage() {
         <Section>
           <div className="grid gap-8 md:grid-cols-2">
             {/* JewelVision Card */}
-            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow">
+            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl" />
               <CardHeader>
                 <div className="flex items-center space-x-2 mb-2">
@@ -171,8 +171,8 @@ export default function HomePage() {
                   Identify designs, dedupe catalogs, auto-generate variants with our proprietary AI vision system
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 mb-6">
+              <CardContent className="flex flex-col flex-grow">
+                <ul className="space-y-2 mb-6 flex-grow">
                   <li className="flex items-center text-sm">
                     <CheckCircle className="h-4 w-4 mr-2 text-gold" />
                     99.9% accuracy in design matching
@@ -186,7 +186,7 @@ export default function HomePage() {
                     Auto-generate product variants
                   </li>
                 </ul>
-                <Button asChild className="w-full">
+                <Button asChild className="w-full mt-auto">
                   <Link href="/jewelvision">
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -196,7 +196,7 @@ export default function HomePage() {
             </Card>
 
             {/* Bundle Card */}
-            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow">
+            <Card className="relative overflow-hidden hover:shadow-xl transition-shadow flex flex-col h-full">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
               <CardHeader>
                 <div className="flex items-center space-x-2 mb-2">
@@ -208,8 +208,8 @@ export default function HomePage() {
                   High-converting site + industry-tuned AI agent for complete digital transformation
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 mb-6">
+              <CardContent className="flex flex-col flex-grow">
+                <ul className="space-y-2 mb-6 flex-grow">
                   <li className="flex items-center text-sm">
                     <CheckCircle className="h-4 w-4 mr-2 text-primary" />
                     Custom Next.js website with CMS
@@ -223,7 +223,7 @@ export default function HomePage() {
                     Launch in 2-3 weeks guaranteed
                   </li>
                 </ul>
-                <Button asChild className="w-full">
+                <Button asChild className="w-full mt-auto">
                   <Link href="/bundle">
                     View Bundle
                     <ArrowRight className="ml-2 h-4 w-4" />

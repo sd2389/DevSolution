@@ -76,7 +76,7 @@ const softwarePricing: PricingTier[] = [
       "Single platform",
       "Basic integrations",
       "4-week delivery",
-      "Source code included",
+      "Hosted solution",
     ],
     cta: { text: "Start Project", href: "/contact?service=software-mvp" },
   },
@@ -316,6 +316,46 @@ export default function PricingPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </Section>
+
+        {/* Code Ownership Policy */}
+        <Section className="bg-muted/30">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">Code Ownership Policy</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              We retain ownership of all code, intellectual property, and technical implementations. 
+              Clients receive fully functional, hosted solutions with ongoing maintenance and support.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary mb-2">You Get</div>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>• Fully functional solution</li>
+                <li>• Hosting & maintenance</li>
+                <li>• Ongoing support</li>
+                <li>• Regular updates</li>
+              </ul>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary mb-2">We Retain</div>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>• Source code ownership</li>
+                <li>• Intellectual property</li>
+                <li>• Technical architecture</li>
+                <li>• Development methodology</li>
+              </ul>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary mb-2">Benefits</div>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>• No technical debt</li>
+                <li>• Professional maintenance</li>
+                <li>• Continuous improvements</li>
+                <li>• Focus on your business</li>
+              </ul>
+            </div>
           </div>
         </Section>
 

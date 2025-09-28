@@ -34,8 +34,11 @@ const frontendStack = [
 
 const backendStack = [
   { name: "FastAPI", description: "Modern Python web framework", category: "Framework" },
+  { name: "Django", description: "High-level Python web framework", category: "Framework" },
   { name: "Node.js", description: "JavaScript runtime", category: "Runtime" },
   { name: "Express", description: "Web application framework", category: "Framework" },
+  { name: "PHP", description: "Server-side scripting language", category: "Language" },
+  { name: "Java", description: "Enterprise-grade programming language", category: "Language" },
   { name: "Prisma", description: "Type-safe ORM", category: "ORM" },
   { name: "GraphQL", description: "Query language for APIs", category: "API" },
   { name: "tRPC", description: "Type-safe API calls", category: "API" },

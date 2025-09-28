@@ -25,7 +25,7 @@ export function PricingTable({ tiers }: PricingTableProps) {
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {tiers.map((tier, index) => (
-        <Card key={index} className={tier.popular ? "border-primary shadow-lg" : ""}>
+        <Card key={index} className={`flex flex-col h-full ${tier.popular ? "border-primary shadow-lg" : ""}`}>
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle>{tier.name}</CardTitle>
@@ -33,14 +33,14 @@ export function PricingTable({ tiers }: PricingTableProps) {
             </div>
             <CardDescription>{tier.description}</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col flex-grow">
             <div className="mb-6">
               <span className="text-4xl font-bold">{tier.price}</span>
               {tier.interval && (
                 <span className="text-muted-foreground ml-2">/{tier.interval}</span>
               )}
             </div>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex-grow">
               {tier.features.map((feature, featureIndex) => (
                 <li key={featureIndex} className="flex items-start">
                   <Check className="h-5 w-5 text-primary shrink-0 mt-0.5 mr-2" />
@@ -49,7 +49,7 @@ export function PricingTable({ tiers }: PricingTableProps) {
               ))}
             </ul>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="mt-auto">
             <Button asChild className="w-full" variant={tier.popular ? "default" : "outline"}>
               <Link href={tier.cta.href}>{tier.cta.text}</Link>
             </Button>

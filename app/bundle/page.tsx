@@ -302,7 +302,7 @@ export default function BundlePage() {
               <Card>
                 <CardContent className="pt-6 text-center">
                   <div className="text-3xl font-bold text-primary">100%</div>
-                  <div className="text-sm text-muted-foreground">Code Ownership</div>
+                  <div className="text-sm text-muted-foreground">Hosted Solution</div>
                 </CardContent>
               </Card>
             </div>

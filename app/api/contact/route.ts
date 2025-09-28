@@ -2,15 +2,43 @@ import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import nodemailer from "nodemailer"
 
-// Validation schema
+// Sanitize input to prevent XSS
+function sanitizeInput(input: string): string {
+  return input
+    .replace(/[<>]/g, '') // Remove potential HTML tags
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/on\w+=/gi, '') // Remove event handlers
+    .replace(/script/gi, '') // Remove script tags
+    .trim()
+}
+
+// Validation schema with enhanced security
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  company: z.string().optional(),
-  website: z.string().url().optional().or(z.literal("")),
-  monthlyTraffic: z.string().optional(),
-  useCase: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name too long")
+    .regex(/^[a-zA-Z\s\-'\.]+$/, "Name contains invalid characters"),
+  email: z.string()
+    .email("Invalid email address")
+    .max(255, "Email too long")
+    .toLowerCase(),
+  company: z.string()
+    .max(100, "Company name too long")
+    .optional(),
+  website: z.string()
+    .url("Invalid website URL")
+    .max(255, "Website URL too long")
+    .optional()
+    .or(z.literal("")),
+  monthlyTraffic: z.string()
+    .max(50, "Traffic value too long")
+    .optional(),
+  useCase: z.string()
+    .max(200, "Use case too long")
+    .optional(),
+  message: z.string()
+    .min(10, "Message must be at least 10 characters")
+    .max(2000, "Message too long"),
 })
 
 // Simple in-memory rate limiting
@@ -52,13 +80,13 @@ export async function POST(req: NextRequest) {
     // Parse form data
     const formData = await req.formData()
     const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      company: formData.get("company") as string || undefined,
-      website: formData.get("website") as string || undefined,
-      monthlyTraffic: formData.get("monthlyTraffic") as string || undefined,
-      useCase: formData.get("useCase") as string || undefined,
-      message: formData.get("message") as string,
+      name: sanitizeInput(formData.get("name") as string || ""),
+      email: sanitizeInput(formData.get("email") as string || ""),
+      company: formData.get("company") ? sanitizeInput(formData.get("company") as string) : undefined,
+      website: formData.get("website") ? sanitizeInput(formData.get("website") as string) : undefined,
+      monthlyTraffic: formData.get("monthlyTraffic") ? sanitizeInput(formData.get("monthlyTraffic") as string) : undefined,
+      useCase: formData.get("useCase") ? sanitizeInput(formData.get("useCase") as string) : undefined,
+      message: sanitizeInput(formData.get("message") as string || ""),
     }
 
     // Validate data
