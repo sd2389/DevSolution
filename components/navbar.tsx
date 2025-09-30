@@ -9,6 +9,8 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 const navigation = [
   { name: "Solutions", href: "/solutions" },
+  { name: "Websites", href: "/websites" },
+  { name: "Demos", href: "/demos" },
   { name: "JewelVision", href: "/jewelvision" },
   { name: "Bundle", href: "/bundle" },
   { name: "Pricing", href: "/pricing" },
@@ -54,7 +56,7 @@ export function Navbar() {
           <div className="hidden md:flex md:items-center md:space-x-4">
             <ThemeToggle />
             <Button asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
-              <Link href="/contact">Book Demo</Link>
+              <Link href="/contact?service=demo">Book Demo</Link>
             </Button>
           </div>
 
@@ -97,7 +99,7 @@ export function Navbar() {
                   {/* Footer with CTA */}
                   <div className="sidebar-footer">
                     <Button asChild className="w-full h-12 text-base font-medium transition-all duration-300 hover:scale-105">
-                      <Link href="/contact" onClick={handleClose}>Book Demo</Link>
+                      <Link href="/contact?service=demo" onClick={handleClose}>Book Demo</Link>
                     </Button>
                   </div>
                 </div>

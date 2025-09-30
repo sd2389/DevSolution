@@ -174,7 +174,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="transition-all duration-300 hover:scale-105">
-                  <Link href="/contact">Book Demo</Link>
+                  <Link href="/contact?service=demo">Book Demo</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="transition-all duration-300 hover:scale-105">
                   <Link href="/pricing">See Pricing</Link>

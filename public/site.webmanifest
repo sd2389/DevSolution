@@ -1,0 +1,17 @@
+{
+  "name": "DevSolutions - AI for Jewelry and SMBs",
+  "short_name": "DevSolutions",
+  "description": "Launch AI-powered solutions in days, not months. Specializing in jewelry industry with JewelVision and comprehensive business solutions.",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

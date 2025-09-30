@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -27,7 +28,8 @@ const metadata: Metadata = {
   description: "Get in touch with DevSolutions. Let's discuss your project and how we can help.",
 }
 
-export default function ContactPage() {
+function ContactPageContent() {
+  const searchParams = useSearchParams()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,6 +42,57 @@ export default function ContactPage() {
   const [file, setFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+
+  // Auto-populate form based on URL parameters
+  useEffect(() => {
+    const product = searchParams.get('product')
+    const service = searchParams.get('service')
+    
+    console.log('URL params:', { product, service }) // Debug log
+    
+    if (product || service) {
+      const selectedService = product || service
+      console.log('Selected service:', selectedService) // Debug log
+      
+      // Map URL parameters to form values
+      const serviceMapping: { [key: string]: string } = {
+        'website': 'website',
+        'software': 'software', 
+        'ai': 'ai',
+        'jewelvision': 'jewelvision',
+        'bundle': 'bundle',
+        'demo': 'other',
+        'other': 'other'
+      }
+      
+      const mappedService = selectedService ? serviceMapping[selectedService] || selectedService : 'other'
+      console.log('Mapped service:', mappedService) // Debug log
+      
+      const newMessage = `I'm interested in ${
+        selectedService === 'bundle' 
+          ? 'Website + AI Bundle' 
+          : selectedService === 'jewelvision'
+          ? 'JewelVision AI'
+          : selectedService === 'demo'
+          ? 'a demo of your services'
+          : selectedService 
+          ? selectedService.charAt(0).toUpperCase() + selectedService.slice(1) + ' Development'
+          : 'your services'
+      } services. Please provide more information about your offerings and pricing.`
+      
+      console.log('New message:', newMessage) // Debug log
+      
+      setFormData(prev => {
+        const newFormData = {
+          ...prev,
+          useCase: mappedService,
+          message: newMessage
+        }
+        console.log('Setting form data:', newFormData) // Debug log
+        return newFormData
+      })
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -137,7 +190,7 @@ export default function ContactPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6" >
                       <div className="grid md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="name">Name *</Label>
@@ -197,7 +250,7 @@ export default function ContactPage() {
                             value={formData.monthlyTraffic}
                             onValueChange={(value) => handleSelectChange("monthlyTraffic", value)}
                           >
-                            <SelectTrigger id="monthlyTraffic">
+                            <SelectTrigger id="monthlyTraffic" >
                               <SelectValue placeholder="Select range" />
                             </SelectTrigger>
                             <SelectContent>
@@ -215,7 +268,7 @@ export default function ContactPage() {
                             value={formData.useCase}
                             onValueChange={(value) => handleSelectChange("useCase", value)}
                           >
-                            <SelectTrigger id="useCase">
+                            <SelectTrigger id="useCase" >
                               <SelectValue placeholder="Select service" />
                             </SelectTrigger>
                             <SelectContent>
@@ -379,5 +432,13 @@ export default function ContactPage() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ContactPageContent />
+    </Suspense>
   )
 }

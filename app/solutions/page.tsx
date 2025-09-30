@@ -6,7 +6,9 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Section } from "@/components/section"
 import { PageHeader } from "@/components/page-header"
-import { Globe, Code, Brain, Sparkles, ArrowRight } from "lucide-react"
+import { WebsiteShowcase } from "@/components/website-showcase"
+import { WebsiteDemos } from "@/components/website-demos"
+import { Globe, Code, Brain, Sparkles, ArrowRight, Play } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -100,7 +102,7 @@ const solutions = [
       "API integration",
     ],
     pricing: "Starting at $199/mo",
-    cta: { text: "Try JewelVision", href: "/jewelvision" },
+    cta: { text: "Try JewelVision", href: "/contact?service=jewelvision" },
   },
 ]
 
@@ -181,35 +183,303 @@ export default function SolutionsPage() {
 
                 {/* Visual Card */}
                 <div className="flex-1 max-w-md w-full">
-                  <Card className="relative overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${
-                      solution.id === 'jewelvision' 
-                        ? 'from-gold/20 to-gold/5' 
-                        : 'from-primary/20 to-primary/5'
+                  <Card className={`relative overflow-hidden group hover:shadow-2xl transition-all duration-500 border ${
+                    solution.id === 'website' 
+                      ? 'border-blue-200/50 bg-gradient-to-br from-blue-50/30 via-background to-cyan-50/20' 
+                      : solution.id === 'software'
+                      ? 'border-purple-200/50 bg-gradient-to-br from-purple-50/30 via-background to-violet-50/20'
+                      : solution.id === 'ai'
+                      ? 'border-emerald-200/50 bg-gradient-to-br from-emerald-50/30 via-background to-teal-50/20'
+                      : 'border-gold/50 bg-gradient-to-br from-gold/20 via-background to-gold/10'
+                  }`}>
+                    
+                    {/* Solution-Specific Background Patterns */}
+                    {solution.id === 'website' && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-transparent" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full blur-2xl" />
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-cyan-400/20 to-transparent rounded-full blur-xl" />
+                        {/* Web Grid Pattern */}
+                        <div className="absolute inset-0 opacity-5">
+                          <div className="absolute top-4 left-4 w-8 h-8 border border-blue-400/30 rounded" />
+                          <div className="absolute top-4 left-16 w-8 h-8 border border-blue-400/30 rounded" />
+                          <div className="absolute top-4 left-28 w-8 h-8 border border-blue-400/30 rounded" />
+                          <div className="absolute top-16 left-4 w-8 h-8 border border-blue-400/30 rounded" />
+                          <div className="absolute top-16 left-16 w-8 h-8 border border-blue-400/30 rounded" />
+                          <div className="absolute top-16 left-28 w-8 h-8 border border-blue-400/30 rounded" />
+                        </div>
+                      </>
+                    )}
+                    
+                    {solution.id === 'software' && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-violet-500/5 to-transparent" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-transparent rounded-full blur-2xl" />
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-violet-400/20 to-transparent rounded-full blur-xl" />
+                        {/* Code Pattern */}
+                        <div className="absolute inset-0 opacity-5">
+                          <div className="absolute top-6 left-4 text-xs font-mono text-purple-400">function()</div>
+                          <div className="absolute top-12 left-4 text-xs font-mono text-purple-400">  return</div>
+                          <div className="absolute top-18 left-4 text-xs font-mono text-purple-400">{'}'}</div>
+                          <div className="absolute top-24 left-4 text-xs font-mono text-purple-400">const =</div>
+                        </div>
+                      </>
+                    )}
+                    
+                    {solution.id === 'ai' && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-transparent" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-400/20 to-transparent rounded-full blur-2xl" />
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-teal-400/20 to-transparent rounded-full blur-xl" />
+                        {/* Neural Network Pattern */}
+                        <div className="absolute inset-0 opacity-5">
+                          <div className="absolute top-6 left-4 w-2 h-2 bg-emerald-400 rounded-full" />
+                          <div className="absolute top-6 left-8 w-2 h-2 bg-emerald-400 rounded-full" />
+                          <div className="absolute top-6 left-12 w-2 h-2 bg-emerald-400 rounded-full" />
+                          <div className="absolute top-12 left-6 w-2 h-2 bg-emerald-400 rounded-full" />
+                          <div className="absolute top-12 left-10 w-2 h-2 bg-emerald-400 rounded-full" />
+                          <div className="absolute top-18 left-8 w-2 h-2 bg-emerald-400 rounded-full" />
+                          {/* Connection lines */}
+                          <div className="absolute top-7 left-5 w-1 h-5 bg-emerald-400/30 rotate-12" />
+                          <div className="absolute top-7 left-9 w-1 h-5 bg-emerald-400/30 -rotate-12" />
+                          <div className="absolute top-13 left-7 w-1 h-5 bg-emerald-400/30 rotate-12" />
+                        </div>
+                      </>
+                    )}
+                    
+                    {solution.id === 'jewelvision' && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-br from-gold/15 via-gold/5 to-transparent" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-gold/20 to-transparent rounded-full blur-2xl" />
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-yellow-400/20 to-transparent rounded-full blur-xl" />
+                        {/* Jewel Pattern */}
+                        <div className="absolute inset-0 opacity-10">
+                          <div className="absolute top-8 left-8 w-4 h-4 bg-gold/30 rotate-45" />
+                          <div className="absolute top-8 left-16 w-3 h-3 bg-gold/30 rotate-45" />
+                          <div className="absolute top-16 left-12 w-2 h-2 bg-gold/30 rotate-45" />
+                        </div>
+                      </>
+                    )}
+                    
+                    {/* Enhanced Hover Effects */}
+                    <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                      solution.id === 'website' 
+                        ? 'from-blue-500/20 via-cyan-500/10 to-transparent' 
+                        : solution.id === 'software'
+                        ? 'from-purple-500/20 via-violet-500/10 to-transparent'
+                        : solution.id === 'ai'
+                        ? 'from-emerald-500/20 via-teal-500/10 to-transparent'
+                        : 'from-gold/25 via-gold/10 to-transparent'
                     }`} />
-                    <CardHeader className="relative p-4 md:p-6">
-                      <solution.icon className="h-10 w-10 md:h-12 md:w-12 mb-3 md:mb-4 text-primary" />
-                      <CardTitle className="text-xl md:text-2xl">{solution.title}</CardTitle>
+                    
+                    <CardHeader className="relative p-4 md:p-6 z-10">
+                      <div className="relative">
+                        <solution.icon className={`h-10 w-10 md:h-12 md:w-12 mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300 ${
+                          solution.id === 'website' 
+                            ? 'text-blue-600' 
+                            : solution.id === 'software'
+                            ? 'text-purple-600'
+                            : solution.id === 'ai'
+                            ? 'text-emerald-600'
+                            : 'text-gold'
+                        }`} />
+                        <div className={`absolute -top-2 -right-2 w-6 h-6 rounded-full group-hover:scale-150 transition-transform duration-500 ${
+                          solution.id === 'website' 
+                            ? 'bg-blue-500/25' 
+                            : solution.id === 'software'
+                            ? 'bg-purple-500/25'
+                            : solution.id === 'ai'
+                            ? 'bg-emerald-500/25'
+                            : 'bg-gold/25'
+                        }`} />
+                      </div>
+                      <CardTitle className={`text-xl md:text-2xl group-hover:transition-colors duration-300 ${
+                        solution.id === 'website' 
+                          ? 'group-hover:text-blue-600' 
+                          : solution.id === 'software'
+                          ? 'group-hover:text-purple-600'
+                          : solution.id === 'ai'
+                          ? 'group-hover:text-emerald-600'
+                          : 'group-hover:text-gold'
+                      }`}>
+                        {solution.title}
+                      </CardTitle>
                     </CardHeader>
-                    <CardContent className="relative p-4 md:p-6">
+                    
+                    <CardContent className="relative p-4 md:p-6 z-10">
                       <div className="space-y-3 md:space-y-4">
-                        <div className="h-2 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full bg-primary w-3/4 animate-pulse" />
+                        {/* Solution-Specific Content */}
+                        {solution.id === 'website' && (
+                          <>
+                            {/* Website Header Bar */}
+                            <div className="h-6 bg-gradient-to-r from-blue-200/60 to-cyan-200/40 rounded-t-lg flex items-center px-3">
+                              <div className="flex space-x-2">
+                                <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                                <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                              </div>
+                              <div className="flex-1 text-center">
+                                <div className="h-1 bg-white/30 rounded w-16 mx-auto"></div>
+                              </div>
+                            </div>
+                            
+                            {/* Website Content Area */}
+                            <div className="bg-gradient-to-br from-blue-50/80 to-cyan-50/60 rounded-b-lg p-3 space-y-2">
+                              <div className="h-2 bg-blue-300/40 rounded w-3/4"></div>
+                              <div className="h-2 bg-cyan-300/40 rounded w-1/2"></div>
+                              <div className="grid grid-cols-3 gap-2 mt-3">
+                                <div className="h-8 bg-gradient-to-br from-blue-200/50 to-cyan-200/30 rounded"></div>
+                                <div className="h-8 bg-gradient-to-br from-cyan-200/50 to-blue-200/30 rounded"></div>
+                                <div className="h-8 bg-gradient-to-br from-blue-200/50 to-cyan-200/30 rounded"></div>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                        
+                        {solution.id === 'software' && (
+                          <>
+                            {/* Code Editor Header */}
+                            <div className="h-6 bg-gradient-to-r from-purple-200/60 to-violet-200/40 rounded-t-lg flex items-center px-3">
+                              <div className="text-xs font-mono text-purple-600">main.js</div>
+                            </div>
+                            
+                            {/* Code Content */}
+                            <div className="bg-gradient-to-br from-purple-50/80 to-violet-50/60 rounded-b-lg p-3 font-mono text-xs space-y-1">
+                              <div className="text-purple-600">
+                                <span className="text-purple-400">function</span> <span className="text-purple-800">buildApp</span>() {'{'}
+                              </div>
+                              <div className="text-purple-600 ml-4">
+                                <span className="text-purple-400">return</span> <span className="text-purple-800">app</span>;
+                              </div>
+                              <div className="text-purple-600">{'}'}</div>
+                              <div className="text-violet-600 mt-2">
+                                <span className="text-violet-400">const</span> <span className="text-violet-800">result</span> = <span className="text-violet-400">await</span> <span className="text-violet-800">buildApp</span>();
+                              </div>
+                            </div>
+                          </>
+                        )}
+                        
+                        {solution.id === 'ai' && (
+                          <>
+                            {/* AI Processing Header */}
+                            <div className="h-6 bg-gradient-to-r from-emerald-200/60 to-teal-200/40 rounded-t-lg flex items-center px-3">
+                              <div className="flex items-center space-x-2">
+                                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                                <div className="text-xs font-mono text-emerald-700">AI Processing</div>
+                              </div>
+                            </div>
+                            
+                            {/* Neural Network Visualization */}
+                            <div className="bg-gradient-to-br from-emerald-50/80 to-teal-50/60 rounded-b-lg p-3">
+                              <div className="flex justify-center items-center space-x-4">
+                                {/* Input Layer */}
+                                <div className="flex flex-col space-y-1">
+                                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                                </div>
+                                
+                                {/* Hidden Layer */}
+                                <div className="flex flex-col space-y-1">
+                                  <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
+                                  <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
+                                </div>
+                                
+                                {/* Output Layer */}
+                                <div className="flex flex-col space-y-1">
+                                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                                </div>
+                              </div>
+                              
+                              {/* Connection Lines */}
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-16 h-px bg-gradient-to-r from-emerald-300/50 to-teal-300/50"></div>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                        
+                        {solution.id === 'jewelvision' && (
+                          <>
+                            {/* JewelVision Interface */}
+                            <div className="h-6 bg-gradient-to-r from-gold/60 to-yellow-200/40 rounded-t-lg flex items-center px-3">
+                              <div className="text-xs font-semibold text-gold-foreground">JewelVision AI</div>
+                            </div>
+                            
+                            {/* Jewel Analysis Display */}
+                            <div className="bg-gradient-to-br from-gold/20 to-yellow-50/60 rounded-b-lg p-3">
+                              <div className="flex items-center justify-center mb-2">
+                                <div className="w-8 h-8 bg-gradient-to-br from-gold/40 to-yellow-300/40 rounded-full flex items-center justify-center">
+                                  <div className="w-4 h-4 bg-gold/60 rounded-full"></div>
+                                </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-3 md:gap-4">
-                          <div className="h-16 md:h-20 bg-muted/50 rounded-lg" />
-                          <div className="h-16 md:h-20 bg-muted/50 rounded-lg" />
+                              <div className="text-center space-y-1">
+                                <div className="h-1 bg-gold/40 rounded w-3/4 mx-auto"></div>
+                                <div className="h-1 bg-yellow-300/40 rounded w-1/2 mx-auto"></div>
+                                <div className="text-xs text-gold-foreground font-semibold">99.9% Accuracy</div>
                         </div>
-                        <div className="space-y-2">
-                          <div className="h-3 bg-muted/50 rounded" />
-                          <div className="h-3 bg-muted/50 rounded w-3/4" />
                         </div>
+                          </>
+                        )}
                       </div>
                     </CardContent>
+                    
+                    {/* Solution-Specific Hover Glow */}
+                    <div className={`absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${
+                      solution.id === 'website' 
+                        ? 'bg-gradient-to-r from-blue-500/10 via-cyan-500/5 to-transparent' 
+                        : solution.id === 'software'
+                        ? 'bg-gradient-to-r from-purple-500/10 via-violet-500/5 to-transparent'
+                        : solution.id === 'ai'
+                        ? 'bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-transparent'
+                        : 'bg-gradient-to-r from-gold/10 via-yellow-500/5 to-transparent'
+                    }`} />
                   </Card>
                 </div>
               </div>
             ))}
+          </div>
+        </Section>
+
+        {/* Website Types Showcase */}
+        <Section>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Types of Websites We Build</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              From simple static sites to complex e-commerce platforms, we create websites tailored to your specific needs.
+            </p>
+          </div>
+          
+          <WebsiteShowcase limit={6} />
+          
+          <div className="text-center mt-8">
+            <Button asChild size="lg">
+              <Link href="/websites">
+                View All Website Types
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </Section>
+
+        {/* Live Demos Section */}
+        <Section className="bg-muted/30">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">See Our Work in Action</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore live demos of websites we've built for real clients across different industries.
+            </p>
+          </div>
+          
+          <WebsiteDemos limit={3} />
+          
+          <div className="text-center mt-8">
+            <Button asChild size="lg" variant="outline">
+              <Link href="/demos">
+                <Play className="ml-2 h-5 w-5" />
+                View All Demos
+              </Link>
+            </Button>
           </div>
         </Section>
 
